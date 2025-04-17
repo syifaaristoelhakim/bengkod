@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -23,11 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $jumlahUser = User::count();
+        return view('home', compact('jumlahUser'));
     }
 
     public function dokter()
     {
-        return view('dokter.index');
+        return redirect()->route('home');
     }
 }

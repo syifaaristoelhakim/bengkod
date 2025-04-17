@@ -22,7 +22,13 @@
                 @if(auth()->check() && auth()->user()->role == 'dokter')
     {{-- Menu Dokter --}}
     <li class="nav-item">
-        <a href="/dokter/periksa" class="nav-link active">
+        <a href="/home" class="nav-link ">
+            <i class="far fa-circle nav-icon"></i>
+            <p>home</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="/dokter/periksa" class="nav-link ">
             <i class="far fa-circle nav-icon"></i>
             <p>Periksa</p>
         </a>
@@ -36,13 +42,19 @@
 @else
     {{-- Menu Pasien --}}
     <li class="nav-item">
-        <a href="#" class="nav-link active">
+        <a href="/home" class="nav-link ">
+            <i class="far fa-circle nav-icon"></i>
+            <p>home</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="/pasien/periksa" class="nav-link ">
             <i class="far fa-circle nav-icon"></i>
             <p>Periksa</p>
         </a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="/pasien/riwayat" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Riwayat Periksa</p>
         </a>
