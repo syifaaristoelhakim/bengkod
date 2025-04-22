@@ -1,34 +1,33 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 
-
-@section('title', 'Tambah Obat')
+@section('title', 'Tambah Permintaan Periksa')
 @section('content_header')
-    <h1>Tambah Obat</h1>
+    <h1>Permintaan Periksa Baru</h1>
 @endsection
+
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{route('obat.store')}}" method="POST">
-                @csrf {{-- harus ada di form untuk proteksi, biar gaada anomali--}}
+            <form method="POST" action="{{ route('pasien.periksa.store') }}">
+                @csrf
+
                 <div class="form-group">
-                    <label for="nama">Nama obat</label>
-                    <input type="text" name="nama_obat" id="nama" placeholder="Nama obat" class="form-control" required>
+                    <label for="id_dokter">Pilih Dokter</label>
+                    <select name="id_dokter" id="id_dokter" class="form-control" required>
+                        @foreach ($dokters as $dokter)
+                            <option value="{{ $dokter->id }}">{{ $dokter->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
+
                 <div class="form-group">
-                    <label for="nama">Kemasan</label>
-                    {{-- ambil template option di bawah ini di adminLTE nya https://jeroennoten.github.io/Laravel-AdminLTE/ -> components -> basic form components --}}
-                    <x-adminlte-select name="kemasan">
-                        <x-adminlte-options :options="['pill' => 'Pill', 'sachet' => 'Sachet', 'botol' => 'Botol']"
-                            empty-option="Pilih kemasan"/>
-                    </x-adminlte-select>
+                    <label for="tgl_periksa">Tanggal Periksa</label>
+                    <input type="datetime-local" name="tgl_periksa" id="tgl_periksa" class="form-control" required>
                 </div>
-                <div class="form-group">
-                    <label for="nama">Harga</label>
-                    <input type="number" name="harga" id="harga" placeholder="Harga obat" class="form-control" required>
-                </div>
-                <div class="wrappper d-flex justify-content-end" style="gap:10px;">
-                    <button type="submit" class="btn btn-success">Tambah</button>
-                    <a href="{{route('obat.index')}}" class="btn btn-secondary">Kembali</a>
+
+                <div class="d-flex justify-content-end" style="gap:10px;">
+                    <button type="submit" class="btn btn-success">Ajukan</button>
+                    <a href="{{ route('periksa.pasienindex') }}" class="btn btn-secondary">Kembali</a>
                 </div>
             </form>
         </div>

@@ -38,7 +38,9 @@ class Periksa extends Model
      * Relasi dengan model Obat (melalui DetailPeriksa)
      */
     public function obats()
-    {
-        return $this->belongsToMany(Obat::class, 'detail_periksas', 'id_periksa', 'id_obat');
-    }
+{
+    return $this->belongsToMany(Obat::class, 'detail_periksas', 'id_periksa', 'id_obat');
+}
+
+
 }

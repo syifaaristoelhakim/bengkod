@@ -4,9 +4,7 @@
 @section('content_header_title', 'Data Periksa')
 @section('content_body')
     <div class="card">
-        <div class="card-header">
-            <a href="{{ route('pasien.periksa.create') }}" class="btn btn-primary">Tambah Periksa</a>
-        </div>
+       
         <div class="card-body">
             <table class="table table-striped table-hover">
                 <thead>
@@ -14,7 +12,10 @@
                         <th>Pasien</th>
                         <th>Dokter</th>
                         <th>Tanggal Periksa</th>
-                
+                        <th>Catatan</th>
+                        <th>Biaya</th>
+                        <th>Obat</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -22,7 +23,21 @@
                         <tr>
                             <td>{{ $periksa->pasien->name ?? '-' }}</td>
                             <td>{{ $periksa->dokter->name ?? '-' }}</td>
-                            <td>{{ $periksa->tgl_periksa }}</td>          
+                            <td>{{ $periksa->tgl_periksa }}</td>
+                            <td>{{ $periksa->catatan }}</td>
+                            <td>Rp{{ number_format($periksa->biaya_periksa, 0, ',', '.') }}</td>
+                            <td>
+    @if($periksa->obats->count())
+        <ul class="mb-0 ps-3">
+            @foreach($periksa->obats as $obat)
+                <li>{{ $obat->nama_obat }}</li>
+            @endforeach
+        </ul>
+    @else
+        <span>-</span>
+    @endif
+</td>
+                           
                         </tr>
                     @endforeach
                 </tbody>

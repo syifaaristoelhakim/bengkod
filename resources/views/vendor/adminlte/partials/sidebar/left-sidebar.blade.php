@@ -23,19 +23,19 @@
     {{-- Menu Dokter --}}
     <li class="nav-item">
         <a href="/home" class="nav-link ">
-            <i class="far fa-circle nav-icon"></i>
-            <p>home</p>
+            <i class="fas fa-home nav-icon"></i>
+            <p>Dasboard</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="/dokter/periksa" class="nav-link ">
-            <i class="far fa-circle nav-icon"></i>
+            <i class="fas fa-stethoscope nav-icon"></i>
             <p>Periksa</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="/dokter/obat" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
+            <i class="fas fa-pills nav-icon"></i>
             <p>Obat</p>
         </a>
     </li>
@@ -43,22 +43,23 @@
     {{-- Menu Pasien --}}
     <li class="nav-item">
         <a href="/home" class="nav-link ">
-            <i class="far fa-circle nav-icon"></i>
-            <p>home</p>
+            <i class="fas fa-home nav-icon"></i>
+            <p>Dasboard</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="/pasien/periksa" class="nav-link ">
-            <i class="far fa-circle nav-icon"></i>
+            <i class="fas fa-stethoscope nav-icon"></i>
             <p>Periksa</p>
         </a>
     </li>
     <li class="nav-item">
-        <a href="/pasien/riwayat" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Riwayat Periksa</p>
-        </a>
-    </li>
+    <a href="/pasien/riwayat" class="nav-link">
+        <i class="fas fa-history nav-icon"></i>
+        <p>Riwayat Periksa</p>
+    </a>
+</li>
+
 @endif
 
             </ul>

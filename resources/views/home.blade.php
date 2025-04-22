@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Dasboard')
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Home</h1>
+    <h1 class="mb-4">Dasboard</h1>
     <div class="row">
         <div class="col-lg-3 col-6">
             <!-- small box -->

@@ -15,8 +15,9 @@ class PeriksaController extends Controller
      */
     public function index()
     {
-        $periksas = Periksa::with('pasien', 'dokter')->get();
+        $periksas = Periksa::with(['pasien', 'dokter', 'obats'])->get();
         return view('dokter.periksa.index', compact('periksas'));
+        
 
         
     }
@@ -29,6 +30,14 @@ class PeriksaController extends Controller
         
     }
 
+    public function riwayatindex()
+    {
+        $periksas = Periksa::with('pasien', 'dokter')->get();
+        return view('pasien.riwayat.index', compact('periksas'));
+        
+    }
+
+
     public function create()
     {
         $pasiens = User::where('role', 'pasien')->get();
@@ -37,6 +46,33 @@ class PeriksaController extends Controller
 
         return view('dokter.periksa.create', compact('pasiens', 'dokters', 'obats'));
     }
+
+    public function pasienCreate()
+{
+    // Mengambil data dokter dengan role 'dokter'
+    $dokters = User::where('role', 'dokter')->get();
+
+    // Mengirimkan data dokter ke view
+    return view('pasien.periksa.create', compact('dokters'));
+}
+
+public function pasienStore(Request $request)
+{
+    $request->validate([
+        'id_dokter' => 'required|exists:users,id',
+        'tgl_periksa' => 'required|date',
+    ]);
+
+    Periksa::create([
+        'id_pasien' => auth()->id(), // otomatis isi dari user yang login
+        'id_dokter' => $request->id_dokter,
+        'tgl_periksa' => $request->tgl_periksa,
+        'catatan' => null,
+        'biaya_periksa' => null,
+    ]);
+
+    return redirect()->route('periksa.pasienindex')->with('success', 'Permintaan periksa berhasil diajukan.');
+}
 
     /**
      * Store a newly created resource in storage.
@@ -61,16 +97,13 @@ class PeriksaController extends Controller
         ]);
 
         // Masukkan data ke tabel detail_periksas jika obat dipilih
-        if ($request->has('obat_ids') && is_array($request->obat_ids)) {
-            foreach ($request->obat_ids as $id_obat) {
-                DetailPeriksa::create([
-                    'id_periksa' => $periksa->id,
-                    'id_obat' => $id_obat
-                ]);
-            }
+        if ($request->has('obat')) {
+            $periksa->obats()->attach($request->obat);
         }
-
+    
         return redirect()->route('periksa.index')->with('success', 'Data periksa berhasil disimpan.');
+
+        
     }
 
     /**

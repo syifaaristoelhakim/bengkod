@@ -9,28 +9,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-Route::prefix('dokter')->group (function(){
+Route::prefix('dokter')->middleware('role:dokter')->group(function () {
+    Route::get('/', [HomeController::class, 'dokter'])->name('dokter.home');
     Route::resource('obat', ObatController::class);
     Route::resource('periksa', PeriksaController::class);
 });
 
-Route::prefix('pasien')->group (function(){
-    Route::resource('obat', ObatController::class);
-    Route::get('/periksa', [PeriksaController::class, 'pasienIndex'])->name('pasien.periksa.index');
+
+Route::prefix('pasien')->middleware('role:pasien')->group(function () {
+    Route::get('/', [PeriksaController::class, 'index'])->name('pasien.home');
+    Route::get('/periksa', [PeriksaController::class, 'pasienindex'])->name('periksa.pasienindex');
+    Route::get('/pasien/periksa', [PeriksaController::class, 'pasienindex'])->name('periksa.pasienindex');
+    Route::get('/periksa/create', [PeriksaController::class, 'pasiencreate'])->name('pasien.periksa.create');
+    Route::post('/periksa/store', [PeriksaController::class, 'pasienstore'])->name('pasien.periksa.store');
+    Route::get('/riwayat', [PeriksaController::class, 'riwayatIndex'])->name('pasien.riwayat.index');
 });
-
-
-
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/dokter', [HomeController::class, 'dokter'])-> name('dokter');
-
-// routes/web.php
-Route::get('/pasien', [PeriksaController::class, 'index'])->name('periksa.index');
-
-Route::get('/pasien', [PeriksaController::class, 'index'])->name('riwayat.index');
+Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -46,12 +46,12 @@
 
                 <!-- Menambahkan input untuk memilih obat -->
                 <div class="form-group">
-                    <label for="obat">Pilih Obat</label>
-                    <select name="obat[]" id="obat" class="form-control" multiple>
-                        @foreach ($obats as $obat)
-                            <option value="{{ $obat->id }}">{{ $obat->nama_obat }}</option>
-                        @endforeach
-                    </select>
+                <label for="obat">Obat</label>
+<select name="obat[]" id="obat" multiple class="form-control">
+    @foreach ($obats as $obat)
+        <option value="{{ $obat->id }}">{{ $obat->nama_obat }}</option>
+    @endforeach
+</select>
                     <small class="form-text text-muted">Pilih obat yang diberikan kepada pasien. Anda dapat memilih lebih dari satu obat.</small>
                 </div>
 

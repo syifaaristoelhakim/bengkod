@@ -16,4 +16,10 @@ class Obat extends Model
         'kemasan',
         'harga'
     ];
+
+    public function periksas()
+{
+    return $this->belongsToMany(Periksa::class, 'detail_periksas', 'id_obat', 'id_periksa');
+}
+
 }
