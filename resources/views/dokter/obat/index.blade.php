@@ -11,7 +11,7 @@
             <table class="table tbale-striped table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        
                         <th>Nama Obat</th>
                         <th>Kemasan</th>
                         <th>Harga</th>
@@ -21,7 +21,7 @@
                 <tbody>
                 @foreach ($obats as $obat)
                         <tr>
-                            <td>{{ $obat->id }}</td>
+                           
                             <td>{{ $obat->nama_obat }}</td>
                             <td>{{ $obat->kemasan }}</td>
                             <td>{{ $obat->harga }}</td>

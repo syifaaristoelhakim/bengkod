@@ -38,12 +38,8 @@
     @endif
 </td>
                             <td>
-                                <a href="{{ route('periksa.edit', $periksa->id) }}" class="btn btn-warning">Edit</a>
-                                <form action="{{ route('periksa.destroy', $periksa->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                </form>
+                                <a href="{{ route('periksa.edit', $periksa->id) }}" class="btn btn-warning">periksa</a>
+                                
                             </td>
                         </tr>
                     @endforeach

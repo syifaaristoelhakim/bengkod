@@ -75,8 +75,7 @@
         {{-- Role Selection --}}
         <div class="input-group mb-3">
             <select name="role" class="form-control @error('role') is-invalid @enderror">
-                <option value="">-- Select Role --</option>
-                <option value="dokter" {{ old('role') == 'dokter' ? 'selected' : '' }}>Dokter</option>
+                <option value="">Select Role</option>
                 <option value="pasien" {{ old('role') == 'pasien' ? 'selected' : '' }}>Pasien</option>
             </select>
 
