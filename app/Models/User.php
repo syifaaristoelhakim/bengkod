@@ -11,9 +11,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    // Add 'role' to the $fillable property to allow mass assignment
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role', // Add 'role' here
     ];
 }

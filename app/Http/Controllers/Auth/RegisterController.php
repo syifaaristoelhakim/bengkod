@@ -11,31 +11,18 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
      *
-     * @var string
+     * @return string
      */
-    //protected $redirectTo = '/home';
-    
     protected function redirectTo()
     {
+        // Redirect ke 'dokter' jika role user adalah 'dokter', atau ke 'home' jika bukan
         return Auth::user()->role === 'dokter' ? "/dokter" : "home";
     }
-
 
     /**
      * Create a new controller instance.
@@ -59,6 +46,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['required', 'string', 'in:dokter,pasien'], // Validasi role hanya bisa 'dokter' atau 'pasien'
         ]);
     }
 
@@ -74,6 +62,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role' => $data['role'], // Simpan role yang dipilih
         ]);
     }
 }

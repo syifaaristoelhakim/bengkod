@@ -6,7 +6,7 @@ use App\Http\Controllers\PeriksaController;
 use App\Http\Controllers\ObatController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/auth/login');
 });
 
 Route::prefix('dokter')->middleware('role:dokter')->group(function () {
